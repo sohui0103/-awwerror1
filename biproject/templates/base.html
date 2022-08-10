@@ -1,83 +1,201 @@
-{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>메인 페이지</title>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'home' %}">Awww</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        
-    
 
-    {% if user.is_authenticated %}
-    <li class="nav-item">
-      <a class="nav-link"><span id="user_name">{{ user.username }}</span>님 반갑습니다!</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'create' %}">new post</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'logout' %}">logout</a>
-    </li>
-    {% else %}
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'login' %}">Sign in</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'signup' %}">Sign up</a>
-    </li>
-    {% endif %}
-    </ul>  
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
+<body id="page-top">
 
-        
-            <li class="nav-item">
-              <a class="nav-link" href="#">순위</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                플레이리스트
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'home' %}">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Awww</div>
+      </a>
+
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'musictalk' %}">Music Talk</a>
+      </li>
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Play List
+      </div>
+
+      <!-- Nav Item - User Play list -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'userplaylist' %}">유저들의 플레이리스트</a>
+      </li>
+
+      <!-- Nav Item - Play list -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'makeplaylist' %}">플레이리스트 만들기</a>
+      </li>
+
+      <!-- Nav Item - Mypage -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'mypage' %}">Mypage</a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">만들기</a>
-                <a class="dropdown-item" href="#">유저들의 플레이리스트</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">플레이리스트 순위</a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                      aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'create' %}">소통</a>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                {% if user.is_authenticated %}
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.username}}</span>
+                {% else %}
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">로그인을 해주세요</span>
+                {% endif %}
+              </a>
+
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                {% if user.is_authenticated %}
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'logout' %}" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+                {% else %}
+                <a class="dropdown-item" href="{% url 'login' %}">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Login
+                </a>
+
+                <a class="dropdown-item" href="{% url 'signup' %}">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  회원가입
+                </a>
+                {% endif %}
+              </div>
             </li>
-            <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="post">
-              {% csrf_token %}
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" value="{{q}}">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
+
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          {% block content %}
+
+          {% endblock %}
+
         </div>
-      </nav>
+        <!-- /.container-fluid -->
 
+      </div>
+      <!-- End of Main Content -->
 
-    <br>
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Awww 2022</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
 
-    <div class="container">
-    {% block content %}
-    {% endblock %}
     </div>
-    
-     
-    
+    <!-- End of Content Wrapper -->
 
-      
-    
-</body>
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">로그아웃하시겠어요?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">아래 로그아웃 버튼을 눌러주세요.</div>
+        <div class="modal-footer">
+          <a class="btn btn-success" href="{% url 'logout' %}">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.core.paginator import Paginator
-from .models import Blog
-from .form import BlogUpdate
+from awwwapp.models import Blog
+from awwwapp.forms import BlogUpdate
 
 # Create your views here.
 
@@ -68,3 +68,17 @@ def search(request):
         return render(request, 'search.html')
 
 
+def musictalk(request):
+    return render(request, 'musictalk.html')
+
+def userplaylist(request):
+    return render(request, 'userplaylist.html')
+
+def musicplaylist(request):
+    return render(request, 'musicplaylist.html')
+
+def mypage(request):
+    return render(request, 'mypage.html')
+
+def makeplaylist(request):
+    return render(request, 'makeplaylist.html')
